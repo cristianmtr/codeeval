@@ -1,0 +1,51 @@
+email = disposable.style.email.with+symbol@example.com
+	true
+email = a.little.lengthy.but.fine@dept.example.com
+	true
+email = b@domain.net
+	true
+email = niceandsimple@example.com
+	true
+email = "very.unusual.@.unusual.com"@example.com
+	found @
+	false
+email = 1@d.net
+	true
+email = Abc.example.com
+	found @ at -1
+	false
+email = hfij#kjdfvkl
+	found @ at -1
+	false
+email = b@d.net
+	true
+email = bob123@alice123.com
+	true
+email = <invalid>@foo.com
+	found <
+	false
+email = this is not true
+	found  
+	false
+email = disposable.style.email.with+156@example.com
+	true
+email = this is"not\allowed@example.com
+	found "
+	false
+email = a"b(c)d,e:f;g<h>i[j\k]l@example.com
+	found "
+	false
+email = just"not"right@example.com
+	found "
+	false
+email = asterisk_domain@foo.*
+	found not alpha_chars in dot section
+	false
+email = very.common@example.com
+	true
+email = this\ still\"not\\allowed@example.com
+	found "
+	false
+email = A@b@c@example.co
+	found @
+	false
