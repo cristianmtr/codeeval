@@ -1,5 +1,8 @@
 // Problem description and test cases here
 // https://www.hackerrank.com/challenges/jim-and-the-skyscrapers
+// NOTES
+// can be further optimized by doing the work
+// while reading from the file, without having the vector arr_sky
 #include <cmath>
 #include <map>
 #include <cstdio>
@@ -52,10 +55,6 @@ int main() {
 		// and calculate the stuff
 		the_map[arr_sky[i]] += 1;
 
-		// cout << "at index " << i << endl;
-		// cout << "map is " << endl;
-		// printmap(the_map);
-
 		vector<map<int,int>::iterator> entries_to_be_deleted_from_the_map;
 		for ( map<int,int>::iterator j = the_map.begin(); j!=the_map.end(); ++j)
 		{
@@ -84,7 +83,6 @@ int main() {
 	{
 		if ( j->second >= 2 )
 		{
-			// cout << "at end " << j->first << " had " << j->second << " count"<< endl;
 			total_sum += calculatePossibs(j->second,2);
 		}
 	}
