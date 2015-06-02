@@ -3,6 +3,7 @@
 // Print - print all elements from head to end
 // Insert_at_head - insert element as new head
 // Insert_at_index - insert new element at given index
+// Delete_at_index - deletes node at given index
 // Takes input nr of nodes to create followed
 // by the data each of them should contain
 // Prints the data
@@ -89,6 +90,31 @@ Node* Insert_at_index(Node *head, int data, int position)
     }
 }
 
+
+Node* Delete_at_index(Node *head, int position)
+{
+  using namespace std;
+  if ( position == 0 )
+    {
+      head = head->next;
+      return head;
+    }
+  int i = 1;
+  Node *prevNode = new Node;
+  Node *nextNode = new Node;
+  prevNode = head;
+  nextNode = head->next->next;
+  while ( i != position )
+    {
+      prevNode = prevNode->next;
+      nextNode = nextNode->next;
+      i++;
+    }
+  prevNode->next=nextNode;
+  return head;
+}
+
+
 int main()
 {
   using namespace std;
@@ -107,6 +133,9 @@ int main()
   Print(head);
   head = Insert_at_index(head, 2301, 2);
   cout << "contents after inserting at index: " << endl;
+  Print(head);
+  head = Delete_at_index(head, 2);
+  cout << "contents after deleting at index 2: " << endl;
   Print(head);
   return 0;
 }
