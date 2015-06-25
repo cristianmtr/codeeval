@@ -4,10 +4,13 @@
 // Insert_at_head - insert element as new head
 // Insert_at_index - insert new element at given index
 // Delete_at_index - deletes node at given index
+// ReversePrint - print elements data from tail to head
 // Takes input nr of nodes to create followed
 // by the data each of them should contain
-// Prints the data
+// Tests each function
 #include<iostream>
+#include <stdio.h>
+#include <string.h>
 
 struct Node
 {
@@ -19,7 +22,7 @@ Node* Insert(Node *head,int data)
 {
   using namespace std;
   Node *nextNode = new Node;
-  if (!head)
+  if (!head->data)
     {
       nextNode->data = data;
       return nextNode;
@@ -39,18 +42,12 @@ Node* Insert(Node *head,int data)
 int Print(Node *head)
 {
   using namespace std;
-  if (head && head->data)
+  Node* thisNode = new Node;
+  thisNode = head;
+  while (thisNode && thisNode->data)
     {
-      Node *thisNode;
-      thisNode = new Node;
-      thisNode = head;
       cout << thisNode->data << endl;
-      while (thisNode->next)
-	{
-	  thisNode = thisNode->next;
-	  cout << thisNode->data << endl;
-	}
-      return 0;
+      thisNode = thisNode -> next;
     }
   return 0;
 }
@@ -114,13 +111,29 @@ Node* Delete_at_index(Node *head, int position)
   return head;
 }
 
+void ReversePrint(Node* head)
+{
+  using namespace std;
+  char buffer [100] = {};
+  char tmp [100] = {};
+  Node* thisNode = new Node;
+  thisNode = head;
+  while (thisNode && thisNode->data)
+    {
+      sprintf(buffer, "%d\n%s", thisNode->data, tmp);
+      strncpy(tmp, buffer, 100);
+      thisNode = thisNode->next;
+    }	
+  cout << buffer;
+  return;
+}
 
 int main()
 {
   using namespace std;
   int nr_of_data;
   int data;
-  Node *head;
+  Node *head = new Node;
   cin >> nr_of_data;
   while (cin >> data)
     {
@@ -132,10 +145,12 @@ int main()
   cout << "contents after inserting at head: " << endl;
   Print(head);
   head = Insert_at_index(head, 2301, 2);
-  cout << "contents after inserting at index: " << endl;
+  cout << "contents after inserting at index 2: " << endl;
   Print(head);
   head = Delete_at_index(head, 2);
   cout << "contents after deleting at index 2: " << endl;
   Print(head);
+  cout << "printing in reverse" << endl;
+  ReversePrint(head);
   return 0;
 }
