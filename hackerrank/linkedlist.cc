@@ -1,3 +1,14 @@
+// Linked list implementation		
+// Insert - insert element at end	
+// Print - print all elements from head to end		
+// Insert_at_head - insert element as new head		
+// Insert_at_index - insert new element at given index		
+// Delete_at_index - deletes node at given index		
+// ReversePrint - print elements data from tail to head
+// Reverse - reverses list and returns new head
+// Takes input nr of nodes to create followed		
+// by the data each of them should contain		
+// Tests each function
 #include <array>
 #include <iostream>
 #include <stdio.h>
