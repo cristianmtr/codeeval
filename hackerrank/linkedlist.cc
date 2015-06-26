@@ -1,14 +1,5 @@
-// Linked list implementation
-// Insert - insert element at end
-// Print - print all elements from head to end
-// Insert_at_head - insert element as new head
-// Insert_at_index - insert new element at given index
-// Delete_at_index - deletes node at given index
-// ReversePrint - print elements data from tail to head
-// Takes input nr of nodes to create followed
-// by the data each of them should contain
-// Tests each function
-#include<iostream>
+#include <array>
+#include <iostream>
 #include <stdio.h>
 #include <string.h>
 
@@ -128,18 +119,37 @@ void ReversePrint(Node* head)
   return;
 }
 
+Node* Reverse(Node* head)
+{
+  using namespace std;
+  Node* thisNode = new Node;
+  thisNode = head;
+  Node* prevNode = new Node;
+  prevNode = head;
+  Node* nextNode = new Node;
+  nextNode = head->next;
+  head->next=0;
+  while (nextNode && nextNode != NULL && nextNode !=0 )
+    {
+      thisNode = nextNode;
+      nextNode = thisNode->next;
+      thisNode->next=prevNode;
+      prevNode = thisNode;
+    }
+  return prevNode;
+}
+
 int main()
 {
   using namespace std;
-  int nr_of_data;
-  int data;
+  
+  array <int,5> data = {44, 12, 173, -4, 1600 };
   Node *head = new Node;
-  cin >> nr_of_data;
-  while (cin >> data)
+  for (uint i = 0; i < data.size(); i++)
     {
-      head = Insert(head,data);
+      head = Insert(head,data[i]);
     }
-  cout << "contents after reading from stdin:" << endl;
+  cout << "contents after inserting data from array:" << endl;
   Print(head);
   head = Insert_at_head(head, 99);
   cout << "contents after inserting at head: " << endl;
@@ -152,5 +162,12 @@ int main()
   Print(head);
   cout << "printing in reverse" << endl;
   ReversePrint(head);
+  cout<< "sanity print" << endl;
+  Print(head);
+  cout << "reversing list..." << endl;
+  head = Reverse(head);
+  cout << "contents after reversing" << endl;
+  Print(head);
   return 0;
 }
+
